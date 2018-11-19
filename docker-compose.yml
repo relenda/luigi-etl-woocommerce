@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  postgres:
+    image: postgres:9.5
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=root
+
+  luigi:
+    build: .
+    command: luigid
+    volumes:
+      - .:/app
+    ports:
+      - "8082:8082"
+    depends_on:
+      - postgres
+    environment:
+      - VIRTUAL_PORT=8082
+      - VIRTUAL_HOST=luigi.docker
+
+volumes:
+  mysql_data:
+  postgres_data:

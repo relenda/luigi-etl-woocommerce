@@ -1,0 +1,10 @@
+.idea/*
+.env
+
+intermediates/*
+!intermediates/.gitkeep
+
+dumps/*
+!dumps/.gitkeep
+
+.ssh/id_waihona
